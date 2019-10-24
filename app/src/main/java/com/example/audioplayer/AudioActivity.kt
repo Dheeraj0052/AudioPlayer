@@ -13,8 +13,9 @@ import android.net.Uri
 
 
 class AudioActivity : AppCompatActivity() {
+
     lateinit var mediaplayer : MediaPlayer
-     var  songlength : Int=0
+    var  songlength : Int=0
     var seek : Int =0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,13 +25,34 @@ class AudioActivity : AppCompatActivity() {
         mediaplayer = MediaPlayer.create(baseContext, R.raw.jonasbrothersucker)
 
         if (callby=="byraw"){
-         mediaplayer = MediaPlayer.create(baseContext, R.raw.jonasbrothersucker)
-        songlength =mediaplayer.duration
-        seekBar.max=songlength
+            mediaplayer = MediaPlayer.create(baseContext, R.raw.jonasbrothersucker)
+            songlength =mediaplayer.duration
+
+            seekBar.max=songlength
+
+            val milliseconds: Long = songlength.toLong()
+            val minutes = milliseconds / 1000 / 60
+            val seconds = milliseconds / 1000 % 60
+
+
+            end.setText(minutes.toString()+":"+seconds.toString())
+
+
+
             mediaplayer.start()
+
             val cd = object : CountDownTimer(100000000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     val dur = mediaplayer.getCurrentPosition()
+
+                    val milliseconds: Long = dur.toLong()
+                    val minutes = milliseconds / 1000 / 60
+                    val seconds = milliseconds / 1000 % 60
+
+
+                    strt.setText(minutes.toString()+":"+seconds.toString())
+
+
                     seekBar.setProgress(dur)
                 }
 
@@ -65,11 +87,16 @@ class AudioActivity : AppCompatActivity() {
 
         btnplay.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
+
+
+                iv.setImageResource(R.drawable.giff)
+
                 mediaplayer.start()
             }
         })
         btnpause.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
+                iv.setImageResource(R.drawable.ss)
                 mediaplayer.pause()
             }
         })
@@ -81,14 +108,28 @@ class AudioActivity : AppCompatActivity() {
             if(resultCode == RESULT_OK){
 
                 //the selected audio.
-                 val uri = data?.getData()
+                val uri = data?.getData()
                 mediaplayer = MediaPlayer.create(baseContext, uri)
                 songlength =mediaplayer.duration
                 seekBar.max=songlength
+
+                val milliseconds: Long = songlength.toLong()
+                val minutes = milliseconds / 1000 / 60
+                val seconds = milliseconds / 1000 % 60
+
+
+                end.setText(minutes.toString()+":"+seconds.toString())
                 mediaplayer.start()
                 val cd = object : CountDownTimer(100000000, 1000) {
                     override fun onTick(millisUntilFinished: Long) {
                         val dur = mediaplayer.getCurrentPosition()
+
+                        val milliseconds: Long = dur.toLong()
+                        val minutes = milliseconds / 1000 / 60
+                        val seconds = milliseconds / 1000 % 60
+
+
+                        strt.setText(minutes.toString()+":"+seconds.toString())
                         seekBar.setProgress(dur)
                     }
 

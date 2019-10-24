@@ -5,12 +5,46 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_margin="10dp"
         android:orientation="vertical">
+    <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/iv"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:src="@drawable/giff"
+            android:scaleType="centerInside"
+            android:layout_height="wrap_content"/>
+
+    <SeekBar
+
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar"/>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/strt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+        />
+        <TextView
+                android:id="@+id/end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:layout_alignParentRight="true"
+
+        />
+
+    </RelativeLayout>
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-    android:layout_gravity="center">
+            android:layout_gravity="center">
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -31,19 +65,5 @@
 
 
     </LinearLayout>
-    <SeekBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/seekBar"/>
 
-    <pl.droidsonroids.gif.GifImageView
-        android:layout_marginTop="1dp"
-        android:layout_width="match_parent"
-        android:src="@drawable/minion"
-        android:layout_height="wrap_content"/>
-    <pl.droidsonroids.gif.GifImageView
-            android:layout_marginTop="3dp"
-            android:layout_width="match_parent"
-            android:src="@drawable/giphy"
-            android:layout_height="wrap_content"/>
 </LinearLayout>
